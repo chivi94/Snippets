@@ -15,10 +15,10 @@ public class ReadFileSnippet {
 	 *            File to read
 	 * @return a String array without the null values of the file
 	 */
-	public static String[] readFile(File file) {
+	public String[] readFile(File file) {
 		FileReader fr = null;
 		BufferedReader reader = null;
-		System.out.println("tamaño:"+file.length());
+		System.out.println("tamaÃ±o:"+file.length());
 		String txt[] = new String[(int) file.length()];
 		try {
 			fr = new FileReader(file);
