@@ -12,19 +12,17 @@ public class FileSnippet {
 
 	/**
 	 * Creates a new File object
-	 * 
-	 * @param path
-	 *            File's path
+	 * @param path File's path
 	 * @return true if the file is successfully created, false in another case
 	 */
-	public static boolean createFile(String path) {
+	public static boolean createFile(String path){
 		File file = null;
 		try {
-			file = new File(path + ".txt");
+			file =new File(path+".txt");
 			return file.createNewFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("You need to give a file name.");
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -36,10 +34,10 @@ public class FileSnippet {
 	 *            File to read
 	 * @return a String array without the null values of the file
 	 */
-	public static String[] readFile(File file) {
+	public static String[] readFile(String filePath) {
+		File file = new File(filePath);
 		FileReader fr = null;
 		BufferedReader reader = null;
-		System.out.println("tamaño:" + file.length());
 		String txt[] = new String[(int) file.length()];
 		try {
 			fr = new FileReader(file);
@@ -77,14 +75,15 @@ public class FileSnippet {
 	 * @param content
 	 *            Content of file
 	 */
-	public static void writeFile(File file, String content) {
+	public static void writeFile(String filePath, String content) {
+		File file = new File(filePath);
 		FileWriter fw = null;
 		BufferedWriter writer = null;
 
 		try {
-			fw = new FileWriter(file.getAbsolutePath());
+			fw = new FileWriter(file.getAbsolutePath(),true);
 			writer = new BufferedWriter(fw);
-			writer.write(content);
+			writer.write(content+"\n");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,6 +103,7 @@ public class FileSnippet {
 		boolean go = true;
 		System.out.println("Welcome to file example.");
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String path = "";
 		int option = 0;
 		do {
 			try {
@@ -119,15 +119,21 @@ public class FileSnippet {
 					go = false;
 					break;
 				case 2:
-					String path = "";
-
+					
 					System.out.print("Write the file name: ");
 					path = in.readLine();
 					createFile(path);
 					break;
 				case 3:
+					String[] lines=readFile(path+".txt");
+					for (int i = 0; i < lines.length; i++) {
+						System.out.println(lines[i]);
+					}
 					break;
 				case 4:
+					System.out.println("What do you want to write in the file?:\n");
+					String textToWrite = in.readLine();
+					writeFile(path+".txt", textToWrite);
 					break;
 				default:
 					System.out.println("Ooops!! Try again.");
