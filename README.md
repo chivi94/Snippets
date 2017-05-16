@@ -8,4 +8,5 @@ Free snippets for everyone :D
 
 # Useful links
 http://viralpatel.net/blogs/20-useful-java-code-snippets-for-java-developers/
+
 https://github.com/showcases
