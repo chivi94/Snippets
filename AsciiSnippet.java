@@ -1,5 +1,9 @@
 public class AsciiSnippet {
 
+	/**
+	 * Method to convert a word to the ascii code components
+	 * @param string Word to convert
+	 */
 	public static void stringToAscii(String string) {
 		int n= 0;
 		for (int i = 0; i < string.length(); i++) {
@@ -9,6 +13,10 @@ public class AsciiSnippet {
 		}
 	}
 
+	/**
+	 * Method to convert an array of numbers to a word by the ascii code
+	 * @param ascii Array to convert
+	 */
 	public static void asciiToString(int[] ascii) {
 		char c;
 		for (int i = 0; i < ascii.length; i++) {
