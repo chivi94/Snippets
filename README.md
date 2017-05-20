@@ -10,3 +10,5 @@ Free snippets for everyone :D
 http://viralpatel.net/blogs/20-useful-java-code-snippets-for-java-developers/
 
 https://github.com/showcases
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
