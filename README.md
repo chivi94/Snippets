@@ -7,8 +7,9 @@ Free snippets for everyone :D
  - Raúl Rodríguez Carracedo (Computer Engineering of Valladolid university, Spain)
 
 # Useful links
-http://viralpatel.net/blogs/20-useful-java-code-snippets-for-java-developers/
 
-https://github.com/showcases
+- Java Snippets: http://viralpatel.net/blogs/20-useful-java-code-snippets-for-java-developers/
 
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+- GitHub Showcases: https://github.com/showcases
+
+- GitHub Markdown cheatsheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
