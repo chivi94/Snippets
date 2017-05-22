@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SystemDataSnippet {
+public class SystemDateSnippet {
 
 	/**
 	 * Method to get the system date and hour
