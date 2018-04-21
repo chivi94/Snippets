@@ -131,13 +131,11 @@ public class TaskAssigner {
 	 */
 	public static void main(String[] args) {
 		ArrayList<String> tasksList = toList(readFile("tasks.txt"));
-		Collections.sort(tasksList);
-		for (String grupo : tasksList) {
-			writeFile("sortedTasks.txt", grupo, true);
-		}
 		
 		ArrayList<String> peopleList = toList(readFile("people.txt"));
+		
 		double taskForPerson = tasksList.size() / peopleList.size();
+		
 		for (int i = 0; i < peopleList.size(); i++) {
 			writeFile("assigned.txt", "----------" + peopleList.get(i) + "---------", true);
 			for (int j = 0; j < taskForPerson; j++) {
