@@ -135,10 +135,12 @@ public class TaskAssigner {
 		for (String grupo : tasksList) {
 			writeFile("orderedTasks.txt", grupo, true);
 		}
+		
 		ArrayList<String> peopleList = toList(readFile("people.txt"));
-		for (int i = 0; i < 8; i++) {
+		double taskForPerson = tasksList.size() / peopleList.size();
+		for (int i = 0; i < peopleList.size(); i++) {
 			writeFile("assigned.txt", "----------" + peopleList.get(i) + "---------", true);
-			for (int j = 0; j < 12; j++) {
+			for (int j = 0; j < taskForPerson; j++) {
 				int r = random(0, tasksList.size() - 1);
 				writeFile("assigned.txt", "*" + tasksList.remove(r), true);
 			}
