@@ -10,6 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * This class can be use to assign tasks to people. Two files are needed: The
+ * file with the tasks and the file with the people to assign the tasks. The
+ * program will write a file with the tasks assigned to people in one file named
+ * "assigned.txt".
+ * 
+ * @author ivan
+ *
+ */
 public class TaskAssigner {
 
 	/**
@@ -167,7 +176,7 @@ public class TaskAssigner {
 		double peopleSize = people.size();
 		double taskPerPerson = Math.round(tasksSize / peopleSize);
 		ArrayList<Person> peopleAssigned = null;
-		if (tasksSize < peopleSize || tasksSize == peopleSize) {
+		if (tasksSize <= peopleSize) {
 			peopleAssigned = tasksLessOrEqualThanPeople(tasks, people);
 			writeTasks(peopleAssigned);
 		} else if (tasksSize > peopleSize) {
@@ -235,14 +244,6 @@ public class TaskAssigner {
 
 	}
 
-	/**
-	 * This class can be use to assign tasks to people. Two files are needed:
-	 * The file with the tasks and the file with the people to assign the tasks.
-	 * The program will write a file with the tasks assigned to people in one
-	 * file named "assigned.txt".
-	 * 
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		ArrayList<String> tasksFile = toList(readFile("grupos.txt"));
 		ArrayList<String> peopleFile = toList(readFile("putos.txt"));
