@@ -13,30 +13,41 @@ import java.util.Arrays;
  */
 public class TaskAssigner {
 
-	private ArrayList<String> people;
-	private ArrayList<String> tasks;
+	private ArrayList<Person> people;
+	private ArrayList<Task> tasks;
 	private String fileOutputPath;
 
-	public TaskAssigner(String peopleFilePath, String tasksFilePath,String fileOutputPath) {
+	public TaskAssigner(String peopleFilePath, String tasksFilePath, String fileOutputPath) {
 		super();
-		people = toList(readFile(peopleFilePath));
-		tasks = toList(readFile(tasksFilePath));
+		ArrayList<String> peopleFile = toList(readFile(peopleFilePath));
+		ArrayList<String> tasksFile = toList(readFile(tasksFilePath));
+		people = new ArrayList<>();
+		tasks = new ArrayList<>();
+
+		for (String person : peopleFile) {
+			Person p = new Person(person);
+			people.add(p);
+		}
+		for (String task : tasksFile) {
+			Task t = new Task(task);
+			tasks.add(t);
+		}
 		this.fileOutputPath = fileOutputPath;
 	}
 
-	public ArrayList<String> getPeople() {
+	public ArrayList<Person> getPeople() {
 		return people;
 	}
 
-	public void setPeople(ArrayList<String> people) {
+	public void setPeople(ArrayList<Person> people) {
 		this.people = people;
 	}
 
-	public ArrayList<String> getTasks() {
+	public ArrayList<Task> getTasks() {
 		return tasks;
 	}
 
-	public void setTasks(ArrayList<String> tasks) {
+	public void setTasks(ArrayList<Task> tasks) {
 		this.tasks = tasks;
 	}
 
