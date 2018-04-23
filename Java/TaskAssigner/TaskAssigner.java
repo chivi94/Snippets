@@ -1,25 +1,44 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * This class can be use to assign tasks to people. Two files are needed: The
  * file with the tasks and the file with the people to assign the tasks. The
  * program will write a file with the tasks assigned to people in one file named
- * "assigned.txt".
+ * fileOutputPath.
  * 
  * @author ivan
  *
  */
 public class TaskAssigner {
+
+	private ArrayList<String> people;
+	private ArrayList<String> tasks;
+	private String fileOutputPath;
+
+	public TaskAssigner(String peopleFilePath, String tasksFilePath,String fileOutputPath) {
+		super();
+		people = toList(readFile(peopleFilePath));
+		tasks = toList(readFile(tasksFilePath));
+		this.fileOutputPath = fileOutputPath;
+	}
+
+	public ArrayList<String> getPeople() {
+		return people;
+	}
+
+	public void setPeople(ArrayList<String> people) {
+		this.people = people;
+	}
+
+	public ArrayList<String> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(ArrayList<String> tasks) {
+		this.tasks = tasks;
+	}
 
 	/**
 	 * Creates a new File object
@@ -28,7 +47,7 @@ public class TaskAssigner {
 	 *            File's path
 	 * @return true if the file is successfully created, false in another case
 	 */
-	public static boolean createFile(String path) {
+	public boolean createFile(String path) {
 		File file = null;
 		try {
 			file = new File(path + ".txt");
@@ -47,7 +66,7 @@ public class TaskAssigner {
 	 *            File to read
 	 * @return a String array without the null values of the file
 	 */
-	public static String[] readFile(String filePath) {
+	public String[] readFile(String filePath) {
 		File file = new File(filePath);
 		FileReader fr = null;
 		BufferedReader reader = null;
@@ -86,7 +105,7 @@ public class TaskAssigner {
 	 * @param content
 	 *            Content of file
 	 */
-	public static void writeFile(String filePath, String content, boolean append) {
+	public void writeFile(String filePath, String content, boolean append) {
 		File file = new File(filePath);
 		FileWriter fw = null;
 		BufferedWriter writer = null;
@@ -116,12 +135,12 @@ public class TaskAssigner {
 	 * @param people
 	 *            List of people.
 	 */
-	public static void writeTasks(ArrayList<Person> people) {
+	public void writeTasks(ArrayList<Person> people) {
 		for (Person person : people) {
-			writeFile("assigned.txt", "-----------" + person.getName() + "----------", true);
+			writeFile(fileOutputPath, "-----------" + person.getName() + "----------", true);
 			ArrayList<Task> currenPersonTasks = person.getTasks();
 			for (Task task : currenPersonTasks) {
-				writeFile("assigned.txt", task.getName(), true);
+				writeFile(fileOutputPath, task.getName(), true);
 			}
 		}
 	}
@@ -133,7 +152,7 @@ public class TaskAssigner {
 	 *            The array to convert.
 	 * @return an ArrayList with the array elements.
 	 */
-	public static ArrayList<String> toList(String[] array) {
+	public ArrayList<String> toList(String[] array) {
 		ArrayList<String> list = new ArrayList<String>();
 		for (int i = 0; i < array.length; i++) {
 			list.add(array[i]);
@@ -148,7 +167,7 @@ public class TaskAssigner {
 	 * @param max
 	 * @return the random number
 	 */
-	public static int random(int min, int max) {
+	public int random(int min, int max) {
 		int range = (max - min) + 1;
 		return (int) (Math.random() * range) + min;
 	}
@@ -171,7 +190,7 @@ public class TaskAssigner {
 	 * @param people
 	 *            List of people.
 	 */
-	public static void assign(ArrayList<Task> tasks, ArrayList<Person> people) {
+	public void assign(ArrayList<Task> tasks, ArrayList<Person> people) {
 		double tasksSize = tasks.size();
 		double peopleSize = people.size();
 		double taskPerPerson = Math.round(tasksSize / peopleSize);
@@ -205,7 +224,7 @@ public class TaskAssigner {
 	 * @param people
 	 *            List of people.
 	 */
-	public static void remainderZero(ArrayList<Task> tasks, ArrayList<Person> people, double taskPerPerson) {
+	public void remainderZero(ArrayList<Task> tasks, ArrayList<Person> people, double taskPerPerson) {
 		for (int i = 0; i < people.size(); i++) {
 			Person currentPerson = people.get(i);
 			for (int j = 0; j < taskPerPerson; j++) {
@@ -225,7 +244,7 @@ public class TaskAssigner {
 	 * @param taskPerPerson
 	 *            tasksList.size() / peopleList.size().
 	 */
-	public static ArrayList<Person> tasksLessOrEqualThanPeople(ArrayList<Task> tasks, ArrayList<Person> people) {
+	public ArrayList<Person> tasksLessOrEqualThanPeople(ArrayList<Task> tasks, ArrayList<Person> people) {
 		int randomTask, randomPerson;
 		Task task;
 		Person person;
@@ -242,24 +261,6 @@ public class TaskAssigner {
 		peopleAssigned.addAll(people);
 		return peopleAssigned;
 
-	}
-
-	public static void main(String[] args) {
-		ArrayList<String> tasksFile = toList(readFile("grupos.txt"));
-		ArrayList<String> peopleFile = toList(readFile("putos.txt"));
-		ArrayList<Person> people = new ArrayList<>();
-		ArrayList<Task> tasks = new ArrayList<>();
-
-		for (String person : peopleFile) {
-			Person p = new Person(person);
-			people.add(p);
-		}
-		for (String task : tasksFile) {
-			Task t = new Task(task);
-			tasks.add(t);
-		}
-
-		assign(tasks, people);
 	}
 
 }
