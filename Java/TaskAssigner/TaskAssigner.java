@@ -17,6 +17,19 @@ public class TaskAssigner {
 	private ArrayList<Task> tasks;
 	private String fileOutputPath;
 
+	/**
+	 * This constructor needs 3 paths: The path of the file with the Person's
+	 * name, the path of the file with the Tasks and the path to create a file
+	 * with the tasks assigned to the people. TaskAssigner will create 2 lists:
+	 * One list with people and another with tasks.
+	 * 
+	 * @param peopleFilePath
+	 *            The path of the file with the Person's name.
+	 * @param tasksFilePath
+	 *            The path of the file with the Tasks's name.
+	 * @param fileOutputPath
+	 *            The path to create a file with tasks assigned to the people.
+	 */
 	public TaskAssigner(String peopleFilePath, String tasksFilePath, String fileOutputPath) {
 		super();
 		ArrayList<String> peopleFile = toList(readFile(peopleFilePath));
